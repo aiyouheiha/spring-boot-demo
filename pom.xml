@@ -21,6 +21,9 @@
     <modules>
         <module>sample-redis</module>
         <module>sample-properties</module>
+		<module>sample-aop</module>
+		<module>sample-mysql-mybatis</module>
+		<module>sample-common</module>
     </modules>
 
 	<properties>
