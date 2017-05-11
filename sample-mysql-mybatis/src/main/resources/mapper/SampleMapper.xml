@@ -15,10 +15,10 @@
             AND id = #{id}
         </if>
         <if test="createUserId != null and  createUserId != ''">
-            AND create_user_id = #{createUserId}
+            AND create_user_id LIKE '%#{createUserId}%'
         </if>
         <if test="updateUserId != null and  updateUserId != ''">
-            AND update_user_id = #{updateUserId}
+            AND update_user_id RLIKE '^User_#{updateUserId}$'
         </if>
         <if test="version != null and  version != ''">
             AND version = #{version}
@@ -26,7 +26,7 @@
     </sql>
 
     <insert id="insertSample" parameterType="com.heiha.example.dto.SampleInsertDTO" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO sample (
+        INSERT INTO tb_sample (
         create_user_id, create_time, version
         ) VALUES (
         #{createUserId}, now(), #{version}
@@ -34,33 +34,33 @@
     </insert>
 
     <insert id="insertSampleList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO sample (
+        INSERT INTO tb_sample (
         create_user_id, create_time, version
         ) VALUES
-        <foreach collection="infoList" item="info" separator=", " >
+        <foreach collection="list" item="info" separator=", " >
             (
             #{info.createUserId}, now(), #{info.version}
             )
         </foreach>
     </insert>
-    <!-- -->
-    <!--<delete id="deleteSample" parameterType="com.heiha.example.dto.SampleDeleteDTO">-->
-        <!--DELETE FROM sample-->
-        <!--<where>-->
-            <!--<include refid="" />-->
-        <!--</where>-->
-    <!--</delete>-->
+
+    <delete id="deleteSample" parameterType="com.heiha.example.dto.SampleDeleteDTO">
+        DELETE FROM tb_sample
+        <where>
+            <include refid="deleteCondition" />
+        </where>
+    </delete>
 
     <!--<update id="updateSample" parameterType="com.heiha.example.dto.SampleUpdateDTO">-->
-        <!--UPDATE sample SET version = #{version} WHERE id = #{id}-->
+        <!--UPDATE tb_sample SET version = #{version} WHERE id = #{id}-->
     <!--</update>-->
 
     <!--<select id="getSampleById" parameterType="java.lang.Long" resultMap="sampleMap">-->
         <!--SELECT id, create_user_id, create_time, update_user_id, update_time, version-->
-        <!--FROM sample WHERE id = #{id}-->
+        <!--FROM tb_sample WHERE id = #{id}-->
     <!--</select>-->
 
     <!--<select id="listSample" parameterType="java.lang.Long" resultMap="sampleMap">-->
-        <!--SELECT id, create_user_id, create_time, update_user_id, update_time, version FROM sample-->
+        <!--SELECT id, create_user_id, create_time, update_user_id, update_time, version FROM tb_sample-->
     <!--</select>-->
 </mapper>

@@ -20,35 +20,35 @@ public interface SampleMapper {
      * @param insertInfo
      * @return
      */
-    int insertSample(SampleInsertDTO insertInfo);
+    Integer insertSample(SampleInsertDTO insertInfo);
 
     /**
      * Insert sample list
      * @param insertInfoList
      * @return
      */
-    int insertSampleList(List<SampleInsertDTO> insertInfoList);
-//
-//    /**
-//     * Delete samples which could match given conditions
-//     * @param condition
-//     * @return
-//     */
-//    int deleteSample(SampleDeleteDTO condition);
+    Integer insertSampleList(List<SampleInsertDTO> insertInfoList);
+
+    /**
+     * Delete samples which could match given conditions
+     * @param condition
+     * @return
+     */
+    Integer deleteSample(SampleDeleteDTO condition);
 //
 //    /**
 //     * Update sample by id
 //     * @param info
 //     * @return
 //     */
-//    int updateSample(SampleUpdateDTO info);
+//    Integer updateSample(SampleUpdateDTO info);
 //
 //    /**
 //     * Get sample by id
 //     * @param id
 //     * @return
 //     */
-//    Sample getSampleById(long id);
+//    Sample getSampleById(Long id);
 //
 //    /**
 //     * Get sample list

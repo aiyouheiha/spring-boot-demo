@@ -8,16 +8,16 @@ package com.heiha.example.dto;
  */
 public class SampleUpdateDTO {
     /** Sample id which needs to update */
-    private long id;
+    private Long id;
 
     /** new version */
     private String version;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

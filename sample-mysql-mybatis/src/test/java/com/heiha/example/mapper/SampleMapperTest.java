@@ -28,19 +28,14 @@ public class SampleMapperTest {
 
     @Test
     public void sqlOperations() {
-        SampleInsertDTO insertInfo = new SampleInsertDTO();
-        insertInfo.setCreateUserId("qqq");
-        insertInfo.setVersion("1");
-        System.out.println(sampleMapper.insertSample(insertInfo));
+        System.out.println(sampleMapper.insertSample(SampleTestUtil.newSampleInsertDTO()));
 
-
-        SampleInsertDTO insertInfo2 = new SampleInsertDTO();
-        insertInfo2.setCreateUserId("www");
-        insertInfo2.setVersion("2");
         List<SampleInsertDTO> list = new ArrayList<>();
-        list.add(insertInfo);
-        list.add(insertInfo2);
+        list.add(SampleTestUtil.newSampleInsertDTO());
+        list.add(SampleTestUtil.newSampleInsertDTO());
         System.out.println(sampleMapper.insertSampleList(list));
+
+        System.out.println(sampleMapper.deleteSample(SampleTestUtil.newSampleDeleteDTO()));
     }
 
 }

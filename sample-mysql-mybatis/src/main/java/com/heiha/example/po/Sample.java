@@ -9,18 +9,18 @@ import java.util.Date;
  * <b>Author:</b> heiha<br>
  */
 public class Sample extends BaseEntity {
-    private long id;
+    private Long id;
     private String createUserId;
     private Date createTime;
     private String updateUserId;
     private Date updateTime;
     private String version;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
