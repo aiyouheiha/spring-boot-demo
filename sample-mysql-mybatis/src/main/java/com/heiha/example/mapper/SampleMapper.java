@@ -23,11 +23,42 @@ public interface SampleMapper {
     Integer insertSample(SampleInsertDTO insertInfo);
 
     /**
-     * Insert sample list
+     * Insert sample list <br>
+     * When parameterType is List, XML's parameterType set or not or set irrelevant is no use. <br>
+     * see insertSampleList 1 to 5 in XML.
      * @param insertInfoList
      * @return
      */
     Integer insertSampleList(List<SampleInsertDTO> insertInfoList);
+
+    /**
+     * Insert sample list
+     * @param insertInfoList
+     * @return
+     */
+    Integer insertSampleList2(List<SampleInsertDTO> insertInfoList);
+
+    /**
+     * Insert sample list
+     * @param insertInfoList
+     * @return
+     */
+    Integer insertSampleList3(List<SampleInsertDTO> insertInfoList);
+
+
+    /**
+     * Insert sample list
+     * @param insertInfoList
+     * @return
+     */
+    Integer insertSampleList4(List<SampleInsertDTO> insertInfoList);
+
+    /**
+     * Insert sample list
+     * @param insertInfoList
+     * @return
+     */
+    Integer insertSampleList5(List<SampleInsertDTO> insertInfoList);
 
     /**
      * Delete samples which could match given conditions

@@ -10,15 +10,16 @@
         <result column="version" property="version"/>
     </resultMap>
 
+    <!-- When LIKE, use $ no # -->
     <sql id="deleteCondition">
         <if test="id != null and id != ''">
             AND id = #{id}
         </if>
         <if test="createUserId != null and  createUserId != ''">
-            AND create_user_id LIKE '%#{createUserId}%'
+            AND create_user_id LIKE '%${createUserId}%'
         </if>
         <if test="updateUserId != null and  updateUserId != ''">
-            AND update_user_id RLIKE '^User_#{updateUserId}$'
+            AND update_user_id RLIKE '^User_${updateUserId}$'
         </if>
         <if test="version != null and  version != ''">
             AND version = #{version}
@@ -33,7 +34,54 @@
         )
     </insert>
 
+    <!-- When parameterType is List,
+        parameterType set or not or set irrelevant is no use.
+        see insertSampleList 1 to 5 -->
     <insert id="insertSampleList" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tb_sample (
+        create_user_id, create_time, version
+        ) VALUES
+        <foreach collection="list" item="info" separator=", " >
+            (
+            #{info.createUserId}, now(), #{info.version}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertSampleList2"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tb_sample (
+        create_user_id, create_time, version
+        ) VALUES
+        <foreach collection="list" item="info" separator=", " >
+            (
+            #{info.createUserId}, now(), #{info.version}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertSampleList3" parameterType="com.heiha.example.dto.SampleInsertDTO"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tb_sample (
+        create_user_id, create_time, version
+        ) VALUES
+        <foreach collection="list" item="info" separator=", " >
+            (
+            #{info.createUserId}, now(), #{info.version}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertSampleList4" parameterType="com.heiha.example.dto.SampleInsertDTO">
+        INSERT INTO tb_sample (
+        create_user_id, create_time, version
+        ) VALUES
+        <foreach collection="list" item="info" separator=", " >
+            (
+            #{info.createUserId}, now(), #{info.version}
+            )
+        </foreach>
+    </insert>
+
+    <insert id="insertSampleList5" parameterType="java.lang.String"  useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tb_sample (
         create_user_id, create_time, version
         ) VALUES
