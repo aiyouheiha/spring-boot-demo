@@ -24,6 +24,7 @@
 		<module>sample-aop</module>
 		<module>sample-mysql-mybatis</module>
 		<module>sample-common</module>
+		<module>sample-zk</module>
     </modules>
 
 	<properties>
