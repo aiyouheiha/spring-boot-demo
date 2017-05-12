@@ -14,6 +14,11 @@ import java.util.List;
  * <b>Project:</b> spring-boot-demo<br>
  * <b>Date:</b> 2017/5/11 15:04<br>
  * <b>Author:</b> heiha<br>
+ *
+ * @see org.springframework.boot.autoconfigure.jdbc.DataSourceProperties
+ * @see org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+ * @see org.mybatis.spring.boot.autoconfigure.MybatisProperties
+ * @see org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration
  */
 public interface SampleMapper {
     /**
