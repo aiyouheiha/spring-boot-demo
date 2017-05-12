@@ -1,5 +1,7 @@
 package com.heiha.example.zk;
 
+import org.springframework.stereotype.Component;
+
 /**
  * <br>
  * <b>Project:</b> spring-boot-demo<br>
@@ -9,5 +11,7 @@ package com.heiha.example.zk;
  * @see org.springframework.cloud.zookeeper.ZookeeperProperties
  * @see org.springframework.cloud.zookeeper.ZookeeperAutoConfiguration
  */
+@Component
 public class ZkHelper {
+
 }
