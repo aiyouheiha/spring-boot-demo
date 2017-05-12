@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
  * <b>Project:</b> spring-boot-demo<br>
  * <b>Date:</b> 2017/5/8 14:24<br>
  * <b>Author:</b> heiha<br>
+ *
+ * @see org.springframework.boot.autoconfigure.data.redis.RedisProperties
+ * @see org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
  */
 @Component
 public class RedisUtil {
