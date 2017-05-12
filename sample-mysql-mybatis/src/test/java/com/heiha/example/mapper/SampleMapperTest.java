@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.heiha.example.SampleMysqlMybatisApplication;
 import com.heiha.example.dto.SampleDeleteDTO;
 import com.heiha.example.dto.SampleInsertDTO;
+import com.heiha.example.dto.SampleUpdateDTO;
+import com.heiha.example.dto.SampleUpdateListDTO;
 import org.junit.runner.RunWith;
 import org.junit.Test;
 import org.mybatis.spring.annotation.MapperScan;
@@ -37,6 +39,10 @@ public class SampleMapperTest {
         insertList4();
         insertList5();
         delete();
+        update();
+        updateList();
+        updateList2();
+
     }
 
     private void insert() {
@@ -116,6 +122,36 @@ public class SampleMapperTest {
         printJsonObject(deleteDTO);
         System.out.println("delete: " + sampleMapper.deleteSample(deleteDTO));
         printJsonObject(deleteDTO);
+
+    }
+
+    private void update() {
+        SampleUpdateDTO updateDTO = SampleTestUtil.newSampleUpdateDTO();
+        printJsonObject(updateDTO);
+        System.out.println("update: " + sampleMapper.updateSample(updateDTO));
+        printJsonObject(updateDTO);
+
+    }
+
+    private void updateList() {
+        SampleUpdateDTO updateDTO = SampleTestUtil.newSampleUpdateDTO();
+        SampleUpdateDTO updateDTO2 = SampleTestUtil.newSampleUpdateDTO();
+        printJsonObject(updateDTO, updateDTO2);
+
+        List<SampleUpdateDTO> list = new ArrayList<>();
+        list.add(updateDTO);
+        list.add(updateDTO2);
+
+        System.out.println("updateList: " + sampleMapper.updateSampleList(list));
+        printJsonObject(updateDTO, updateDTO2);
+
+    }
+
+    private void updateList2() {
+        SampleUpdateListDTO updateListDTO = SampleTestUtil.newSampleUpdateListDTO();
+        printJsonObject(updateListDTO);
+        System.out.println("updateList2: " + sampleMapper.updateSampleList2(updateListDTO));
+        printJsonObject(updateListDTO);
 
     }
 

@@ -3,6 +3,7 @@ package com.heiha.example.mapper;
 import com.heiha.example.dto.SampleDeleteDTO;
 import com.heiha.example.dto.SampleInsertDTO;
 import com.heiha.example.dto.SampleUpdateDTO;
+import com.heiha.example.dto.SampleUpdateListDTO;
 import com.heiha.example.po.Sample;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -66,13 +67,27 @@ public interface SampleMapper {
      * @return
      */
     Integer deleteSample(SampleDeleteDTO condition);
-//
-//    /**
-//     * Update sample by id
-//     * @param info
-//     * @return
-//     */
-//    Integer updateSample(SampleUpdateDTO info);
+
+    /**
+     * Update sample by id
+     * @param info
+     * @return
+     */
+    Integer updateSample(SampleUpdateDTO info);
+
+    /**
+     * Update sample list by id
+     * @param infoList
+     * @return
+     */
+    Integer updateSampleList(List<SampleUpdateDTO> infoList);
+
+    /**
+     * Update sample list by id
+     * @param updateListDTO
+     * @return
+     */
+    Integer updateSampleList2(SampleUpdateListDTO updateListDTO);
 //
 //    /**
 //     * Get sample by id

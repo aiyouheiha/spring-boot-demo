@@ -99,9 +99,36 @@
         </where>
     </delete>
 
-    <!--<update id="updateSample" parameterType="com.heiha.example.dto.SampleUpdateDTO">-->
-        <!--UPDATE tb_sample SET version = #{version} WHERE id = #{id}-->
-    <!--</update>-->
+    <update id="updateSample" parameterType="com.heiha.example.dto.SampleUpdateDTO">
+        UPDATE tb_sample SET version = #{version}, update_time = now() WHERE id = #{id}
+    </update>
+
+    <update id="updateSampleList">
+        UPDATE tb_sample SET
+        version =
+        <foreach collection="list" item="info" separator=" " open="case ID" close="end">
+            WHEN #{info.id} THEN #{info.version}
+        </foreach>
+        , update_time = now()
+        WHERE id IN
+        <foreach collection="list" item="info" separator="," open="(" close=")">
+            #{info.id}
+        </foreach>
+    </update>
+
+    <update id="updateSampleList2" parameterType="com.heiha.example.dto.SampleUpdateListDTO">
+        UPDATE tb_sample SET
+        version =
+        <foreach collection="sampleUpdateDTOs" item="info" separator=" " open="case ID" close="end">
+            WHEN #{info.id} THEN #{info.version}
+        </foreach>
+        , update_user_id = #{updateUserId},
+        update_time = now()
+        WHERE id IN
+        <foreach collection="sampleUpdateDTOs" item="info" separator="," open="(" close=")">
+            #{info.id}
+        </foreach>
+    </update>
 
     <!--<select id="getSampleById" parameterType="java.lang.Long" resultMap="sampleMap">-->
         <!--SELECT id, create_user_id, create_time, update_user_id, update_time, version-->
