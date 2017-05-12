@@ -130,12 +130,12 @@
         </foreach>
     </update>
 
-    <!--<select id="getSampleById" parameterType="java.lang.Long" resultMap="sampleMap">-->
-        <!--SELECT id, create_user_id, create_time, update_user_id, update_time, version-->
-        <!--FROM tb_sample WHERE id = #{id}-->
-    <!--</select>-->
+    <select id="getSampleById" parameterType="java.lang.Long" resultMap="sampleMap">
+        SELECT id, create_user_id, create_time, update_user_id, update_time, version
+        FROM tb_sample WHERE id = #{id}
+    </select>
 
-    <!--<select id="listSample" parameterType="java.lang.Long" resultMap="sampleMap">-->
-        <!--SELECT id, create_user_id, create_time, update_user_id, update_time, version FROM tb_sample-->
-    <!--</select>-->
+    <select id="listSample" parameterType="java.lang.Long" resultMap="sampleMap">
+        SELECT id, create_user_id, create_time, update_user_id, update_time, version FROM tb_sample
+    </select>
 </mapper>

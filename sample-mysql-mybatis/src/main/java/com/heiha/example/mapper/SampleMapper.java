@@ -88,18 +88,18 @@ public interface SampleMapper {
      * @return
      */
     Integer updateSampleList2(SampleUpdateListDTO updateListDTO);
-//
-//    /**
-//     * Get sample by id
-//     * @param id
-//     * @return
-//     */
-//    Sample getSampleById(Long id);
-//
-//    /**
-//     * Get sample list
-//     * @return
-//     */
-//    List<Sample> listSample();
+
+    /**
+     * Get sample by id
+     * @param id
+     * @return
+     */
+    Sample getSampleById(Long id);
+
+    /**
+     * Get sample list
+     * @return
+     */
+    List<Sample> listSample();
 
 }

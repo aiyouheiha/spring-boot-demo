@@ -49,4 +49,8 @@ public class SampleTestUtil {
         sampleUpdateListDTO.setSampleUpdateDTOs(list);
         return sampleUpdateListDTO;
     }
+
+    public static Long randomId() {
+        return Long.valueOf(random.nextInt(100));
+    }
 }

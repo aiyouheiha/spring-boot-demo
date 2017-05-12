@@ -42,122 +42,131 @@ public class SampleMapperTest {
         update();
         updateList();
         updateList2();
-
+        get();
+        list();
     }
 
     private void insert() {
         SampleInsertDTO insertDTO = SampleTestUtil.newSampleInsertDTO();
-        printJsonObject(insertDTO);
-        System.out.println("insert: " + sampleMapper.insertSample(insertDTO));
-        printJsonObject(insertDTO);
+        printJsonObject("insert", insertDTO);
+        printJsonObject("insert", sampleMapper.insertSample(insertDTO));
+        printJsonObject("insert", insertDTO);
     }
 
     private void insertList() {
         SampleInsertDTO insertDTO = SampleTestUtil.newSampleInsertDTO();
         SampleInsertDTO insertDTO2 = SampleTestUtil.newSampleInsertDTO();
-        printJsonObject(insertDTO, insertDTO2);
+        printJsonObject("insertList", insertDTO, insertDTO2);
 
         List<SampleInsertDTO> list = new ArrayList<>();
         list.add(insertDTO);
         list.add(insertDTO2);
-        System.out.println("insert list: " + sampleMapper.insertSampleList(list));
+        printJsonObject("insertList", sampleMapper.insertSampleList(list));
 
-        printJsonObject(insertDTO, insertDTO2);
+        printJsonObject("insertList", insertDTO, insertDTO2);
     }
 
     private void insertList2() {
         SampleInsertDTO insertDTO = SampleTestUtil.newSampleInsertDTO();
         SampleInsertDTO insertDTO2 = SampleTestUtil.newSampleInsertDTO();
-        printJsonObject(insertDTO, insertDTO2);
+        printJsonObject("insertList2", insertDTO, insertDTO2);
 
         List<SampleInsertDTO> list = new ArrayList<>();
         list.add(insertDTO);
         list.add(insertDTO2);
-        System.out.println("insert list2: " + sampleMapper.insertSampleList2(list));
+        printJsonObject("insertList2", sampleMapper.insertSampleList2(list));
 
-        printJsonObject(insertDTO, insertDTO2);
+        printJsonObject("insertList2", insertDTO, insertDTO2);
     }
 
     private void insertList3() {
         SampleInsertDTO insertDTO = SampleTestUtil.newSampleInsertDTO();
         SampleInsertDTO insertDTO2 = SampleTestUtil.newSampleInsertDTO();
-        printJsonObject(insertDTO, insertDTO2);
+        printJsonObject("insertList3", insertDTO, insertDTO2);
 
         List<SampleInsertDTO> list = new ArrayList<>();
         list.add(insertDTO);
         list.add(insertDTO2);
-        System.out.println("insert list3: " + sampleMapper.insertSampleList3(list));
+        printJsonObject("insertList3", sampleMapper.insertSampleList3(list));
 
-        printJsonObject(insertDTO, insertDTO2);
+        printJsonObject("insertList3", insertDTO, insertDTO2);
     }
 
     private void insertList4() {
         SampleInsertDTO insertDTO = SampleTestUtil.newSampleInsertDTO();
         SampleInsertDTO insertDTO2 = SampleTestUtil.newSampleInsertDTO();
-        printJsonObject(insertDTO, insertDTO2);
+        printJsonObject("insertList4", insertDTO, insertDTO2);
 
         List<SampleInsertDTO> list = new ArrayList<>();
         list.add(insertDTO);
         list.add(insertDTO2);
-        System.out.println("insert list4: " + sampleMapper.insertSampleList4(list));
+        printJsonObject("insertList4", sampleMapper.insertSampleList4(list));
 
-        printJsonObject(insertDTO, insertDTO2);
+        printJsonObject("insertList4", insertDTO, insertDTO2);
     }
 
     private void insertList5() {
         SampleInsertDTO insertDTO = SampleTestUtil.newSampleInsertDTO();
         SampleInsertDTO insertDTO2 = SampleTestUtil.newSampleInsertDTO();
-        printJsonObject(insertDTO, insertDTO2);
+        printJsonObject("insertList5", insertDTO, insertDTO2);
 
         List<SampleInsertDTO> list = new ArrayList<>();
         list.add(insertDTO);
         list.add(insertDTO2);
-        System.out.println("insert list5: " + sampleMapper.insertSampleList5(list));
+        printJsonObject("insertList5", sampleMapper.insertSampleList5(list));
 
-        printJsonObject(insertDTO, insertDTO2);
+        printJsonObject("insertList5", insertDTO, insertDTO2);
     }
 
     private void delete() {
         SampleDeleteDTO deleteDTO = SampleTestUtil.newSampleDeleteDTO();
-        printJsonObject(deleteDTO);
-        System.out.println("delete: " + sampleMapper.deleteSample(deleteDTO));
-        printJsonObject(deleteDTO);
+        printJsonObject("delete", deleteDTO);
+        printJsonObject("delete", sampleMapper.deleteSample(deleteDTO));
+        printJsonObject("delete", deleteDTO);
 
     }
 
     private void update() {
         SampleUpdateDTO updateDTO = SampleTestUtil.newSampleUpdateDTO();
-        printJsonObject(updateDTO);
-        System.out.println("update: " + sampleMapper.updateSample(updateDTO));
-        printJsonObject(updateDTO);
+        printJsonObject("update", updateDTO);
+        printJsonObject("update", sampleMapper.updateSample(updateDTO));
+        printJsonObject("update", updateDTO);
 
     }
 
     private void updateList() {
         SampleUpdateDTO updateDTO = SampleTestUtil.newSampleUpdateDTO();
         SampleUpdateDTO updateDTO2 = SampleTestUtil.newSampleUpdateDTO();
-        printJsonObject(updateDTO, updateDTO2);
+        printJsonObject("updateList", updateDTO, updateDTO2);
 
         List<SampleUpdateDTO> list = new ArrayList<>();
         list.add(updateDTO);
         list.add(updateDTO2);
 
-        System.out.println("updateList: " + sampleMapper.updateSampleList(list));
-        printJsonObject(updateDTO, updateDTO2);
+        printJsonObject("updateList", sampleMapper.updateSampleList(list));
+        printJsonObject("updateList", updateDTO, updateDTO2);
 
     }
 
     private void updateList2() {
         SampleUpdateListDTO updateListDTO = SampleTestUtil.newSampleUpdateListDTO();
-        printJsonObject(updateListDTO);
-        System.out.println("updateList2: " + sampleMapper.updateSampleList2(updateListDTO));
-        printJsonObject(updateListDTO);
+        printJsonObject("updateList2", updateListDTO);
+        printJsonObject("updateList2", sampleMapper.updateSampleList2(updateListDTO));
+        printJsonObject("updateList2", updateListDTO);
 
     }
 
-    private void printJsonObject(Object... objects) {
+    public void get() {
+        printJsonObject("get", sampleMapper.getSampleById(SampleTestUtil.randomId()));
+    }
+
+    public void list() {
+        printJsonObject("list", sampleMapper.listSample());
+    }
+
+    private void printJsonObject(String note, Object... objects) {
         for (Object object : objects) {
-            System.out.println(JSON.toJSONString(object));
+            System.out.println(note + " : " + JSON.toJSONString(object));
         }
     }
 
