@@ -1,5 +1,6 @@
 package com.heiha.example.zk;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,4 +15,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ZkHelper {
 
+
+    @Autowired
+    private ZookeeperProperties properties;
+
+    public void use() {
+        System.out.println(properties.getConnectString());
+        System.out.println(properties.isEnable());
+    }
 }
