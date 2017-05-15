@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 public class SampleInit2 implements Sample {
     @PostConstruct
     public void init() {
-        SampleInitUtil.before(this.getClass());
+        SampleInitUtil.before(this.getClass(), "init");
     }
 
     @Override

@@ -10,7 +10,7 @@ public class SampleInitUtil {
         System.out.println(clazz.getName() + ": do something ...");
     }
 
-    public static void before(Class clazz) {
-        System.out.println(clazz.getName() + ": before do something ...");
+    public static void before(Class clazz, String note) {
+        System.out.println(clazz.getName() + " : " + note + " : before do something ...");
     }
 }
