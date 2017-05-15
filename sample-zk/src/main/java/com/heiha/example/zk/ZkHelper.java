@@ -22,12 +22,10 @@ public class ZkHelper implements InitializingBean {
 
     private  CuratorFramework client;
 
+    private InterProcessSemaphoreMutex lock;
+
     public void use() throws Exception {
-        if (client.checkExists().forPath("/topology") == null) {
-            System.out.println("create");
-            client.create().forPath("/topology");
-        }
-        System.out.println(client.toString());
+
     }
 
     @Override
@@ -35,5 +33,8 @@ public class ZkHelper implements InitializingBean {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
         client = CuratorFrameworkFactory.newClient(properties.getConnectString(), retryPolicy);
         client.start();
+        if (client.checkExists().forPath("/topology") == null) {
+            client.create().forPath("/topology");
+        }
     }
 }
