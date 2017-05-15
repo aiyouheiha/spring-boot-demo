@@ -1,10 +1,12 @@
 package com.heiha.example.zk;
 
+import org.apache.curator.CuratorZookeeperClient;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.framework.recipes.locks.InterProcessSemaphoreMutex;
 import org.apache.curator.retry.ExponentialBackoffRetry;
+import org.apache.zookeeper.ZooKeeper;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,13 +27,9 @@ public class ZkHelper implements InitializingBean {
     private InterProcessSemaphoreMutex lock;
 
     public void use() throws Exception {
+        lock = new InterProcessSemaphoreMutex(client, "/topology");
         lock.acquire();
         lock.release();
-        lock.acquire();
-        lock.release();
-        System.out.println(lock.acquire(-1, null));
-        lock.release();
-        System.out.println(lock.acquire(-1, null));
     }
 
     @Override
@@ -42,6 +40,5 @@ public class ZkHelper implements InitializingBean {
         if (client.checkExists().forPath("/topology") == null) {
             client.create().forPath("/topology");
         }
-        lock = new InterProcessSemaphoreMutex(client, "/topology");
     }
 }
