@@ -22,7 +22,8 @@ public class ZkHelper implements InitializingBean {
 
     private InterProcessSemaphoreMutex lock;
 
-    public void use() {
+    public void use() throws Exception {
+        lock.acquire();
         System.out.println(properties.getConnectString());
         System.out.println(properties.isEnable());
     }
@@ -32,9 +33,9 @@ public class ZkHelper implements InitializingBean {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
         CuratorFramework client = CuratorFrameworkFactory.newClient(properties.getConnectString(), retryPolicy);
         client.start();
-        if (client.checkExists().forPath("/issue") == null) {
-            client.create().forPath("/issue");
+        if (client.checkExists().forPath("/topology") == null) {
+            client.create().forPath("/topology");
         }
-        lock = new InterProcessSemaphoreMutex(client, "/issue/task-progress-lock");
+        lock = new InterProcessSemaphoreMutex(client, "/topology/test-lock");
     }
 }
