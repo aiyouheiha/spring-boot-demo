@@ -13,4 +13,8 @@ public class SampleInitUtil {
     public static void before(Class clazz, String note) {
         System.out.println(clazz.getName() + " : " + note + " : before do something ...");
     }
+
+    public static void after(Class clazz, String note) {
+        System.out.println(clazz.getName() + " : " + note + " : after do something ...");
+    }
 }

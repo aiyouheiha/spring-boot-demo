@@ -24,9 +24,10 @@ public class ZkHelper implements InitializingBean {
 
     public void use() throws Exception {
         if (client.checkExists().forPath("/topology") == null) {
+            System.out.println("create");
             client.create().forPath("/topology");
         }
-        System.out.println(client.getNamespace() + " : " + client.toString());
+        System.out.println(client.toString());
     }
 
     @Override
@@ -34,6 +35,5 @@ public class ZkHelper implements InitializingBean {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
         client = CuratorFrameworkFactory.newClient(properties.getConnectString(), retryPolicy);
         client.start();
-        client = client.usingNamespace("topology");
     }
 }

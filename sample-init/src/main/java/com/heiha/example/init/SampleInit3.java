@@ -4,6 +4,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 /**
  * <br>
@@ -21,6 +22,11 @@ public class SampleInit3 implements InitializingBean, Sample {
     @PostConstruct
     public void init() {
         SampleInitUtil.before(this.getClass(), "init");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        SampleInitUtil.after(this.getClass(), "destroy");
     }
 
     @Override
