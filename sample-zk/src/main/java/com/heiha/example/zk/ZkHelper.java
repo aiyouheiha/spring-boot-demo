@@ -25,7 +25,13 @@ public class ZkHelper implements InitializingBean {
     private InterProcessSemaphoreMutex lock;
 
     public void use() throws Exception {
-
+        lock.acquire();
+        lock.release();
+        lock.acquire();
+        lock.release();
+        System.out.println(lock.acquire(-1, null));
+        lock.release();
+        System.out.println(lock.acquire(-1, null));
     }
 
     @Override
@@ -36,5 +42,6 @@ public class ZkHelper implements InitializingBean {
         if (client.checkExists().forPath("/topology") == null) {
             client.create().forPath("/topology");
         }
+        lock = new InterProcessSemaphoreMutex(client, "/topology");
     }
 }
