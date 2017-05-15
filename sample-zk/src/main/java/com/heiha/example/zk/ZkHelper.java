@@ -20,22 +20,20 @@ public class ZkHelper implements InitializingBean {
     @Autowired
     private ZookeeperProperties properties;
 
-    private InterProcessSemaphoreMutex lock;
+    private  CuratorFramework client;
 
     public void use() throws Exception {
-        lock.acquire();
-        System.out.println(properties.getConnectString());
-        System.out.println(properties.isEnable());
+        if (client.checkExists().forPath("/topology") == null) {
+            client.create().forPath("/topology");
+        }
+        System.out.println(client.getNamespace() + " : " + client.toString());
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
-        CuratorFramework client = CuratorFrameworkFactory.newClient(properties.getConnectString(), retryPolicy);
+        client = CuratorFrameworkFactory.newClient(properties.getConnectString(), retryPolicy);
         client.start();
-        if (client.checkExists().forPath("/topology") == null) {
-            client.create().forPath("/topology");
-        }
-        lock = new InterProcessSemaphoreMutex(client, "/topology/test-lock");
+        client = client.usingNamespace("topology");
     }
 }
