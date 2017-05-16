@@ -4,12 +4,17 @@ import org.apache.curator.CuratorZookeeperClient;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.locks.InterProcessLock;
+import org.apache.curator.framework.recipes.locks.InterProcessMultiLock;
+import org.apache.curator.framework.recipes.locks.InterProcessMutex;
 import org.apache.curator.framework.recipes.locks.InterProcessSemaphoreMutex;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.ZooKeeper;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * <br>
@@ -24,10 +29,10 @@ public class ZkHelper implements InitializingBean {
 
     private  CuratorFramework client;
 
-    private InterProcessSemaphoreMutex lock;
+    private InterProcessMutex lock;
 
     public void use() throws Exception {
-        lock = new InterProcessSemaphoreMutex(client, "/topology");
+        lock.acquire();
         lock.acquire();
         lock.release();
     }
@@ -35,10 +40,16 @@ public class ZkHelper implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         RetryPolicy retryPolicy = new ExponentialBackoffRetry(1000, 3);
-        client = CuratorFrameworkFactory.newClient(properties.getConnectString(), retryPolicy);
+        client = CuratorFrameworkFactory.builder()
+                .connectString(properties.getConnectString())
+                .retryPolicy(retryPolicy)
+                .namespace("topology")
+                .build();
         client.start();
-        if (client.checkExists().forPath("/topology") == null) {
-            client.create().forPath("/topology");
-        }
+
+//        if (client.checkExists().forPath("/topology") == null) {
+//            client.create().forPath("/topology");
+//        }
+        lock = new InterProcessMutex(client, "/lock");
     }
 }
