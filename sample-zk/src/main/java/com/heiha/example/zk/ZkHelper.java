@@ -27,6 +27,8 @@ public class ZkHelper implements InitializingBean {
     public void use() throws Exception {
         lock.acquire();
         lock.acquire();
+        sleep();
+        lock.release();
         lock.release();
     }
 
@@ -44,7 +46,7 @@ public class ZkHelper implements InitializingBean {
 
     private void sleep() {
         try {
-            Thread.sleep(300 * 1000);
+            Thread.sleep(10 * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
