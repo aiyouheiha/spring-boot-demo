@@ -46,10 +46,14 @@ public class ZkHelper implements InitializingBean {
                 .namespace("topology")
                 .build();
         client.start();
-
-//        if (client.checkExists().forPath("/topology") == null) {
-//            client.create().forPath("/topology");
-//        }
         lock = new InterProcessMutex(client, "/lock");
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(300 * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
