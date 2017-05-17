@@ -10,19 +10,11 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ZookeeperProperties {
-    @Value("${spring.cloud.zookeeper.enabled}")
-    private boolean enable;
-
-    @Value("${spring.cloud.zookeeper.connect-string}")
+    @Value("${zk.connect-string}")
     private String connectString;
 
-    public boolean isEnable() {
-        return enable;
-    }
-
-    public void setEnable(boolean enable) {
-        this.enable = enable;
-    }
+    @Value("${zk.namespace}")
+    private String namespace;
 
     public String getConnectString() {
         return connectString;
@@ -30,5 +22,13 @@ public class ZookeeperProperties {
 
     public void setConnectString(String connectString) {
         this.connectString = connectString;
+    }
+
+    public String getNamespace() {
+        return namespace;
+    }
+
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
     }
 }

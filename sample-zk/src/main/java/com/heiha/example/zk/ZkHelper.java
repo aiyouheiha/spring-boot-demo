@@ -36,7 +36,7 @@ public class ZkHelper implements InitializingBean {
         client = CuratorFrameworkFactory.builder()
                 .connectString(properties.getConnectString())
                 .retryPolicy(retryPolicy)
-                .namespace("topology")
+                .namespace(properties.getNamespace())
                 .build();
         client.start();
         lock = new InterProcessMutex(client, "/lock");
