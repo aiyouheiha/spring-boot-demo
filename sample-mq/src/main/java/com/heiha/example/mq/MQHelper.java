@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
  * <b>Project:</b> spring-boot-demo<br>
  * <b>Date:</b> 2017/5/17 18:51<br>
  * <b>Author:</b> heiha<br>
+ *
+ * @see org.springframework.boot.autoconfigure.jms.activemq.ActiveMQProperties
+ * @see org.springframework.boot.autoconfigure.jms.activemq.ActiveMQAutoConfiguration
  */
 @Component
 public class MQHelper {
