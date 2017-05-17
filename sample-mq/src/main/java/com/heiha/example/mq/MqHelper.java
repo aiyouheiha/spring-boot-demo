@@ -1,5 +1,7 @@
 package com.heiha.example.mq;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,5 +15,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MQHelper {
+    @Autowired
+    private JmsMessagingTemplate jmsMessagingTemplate;
 
+    public void use() {
+
+    }
 }
