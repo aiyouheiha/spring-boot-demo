@@ -1,5 +1,7 @@
 package com.heiha.example.lock;
 
+import com.heiha.example.lock.exception.LockException;
+
 /**
  * <br>
  * <b>Project:</b> spring-boot-demo<br>

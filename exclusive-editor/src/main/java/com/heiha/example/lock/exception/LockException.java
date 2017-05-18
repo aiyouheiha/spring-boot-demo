@@ -1,4 +1,4 @@
-package com.heiha.example.lock;
+package com.heiha.example.lock.exception;
 
 /**
  * <br>

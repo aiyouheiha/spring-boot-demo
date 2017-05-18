@@ -1,5 +1,6 @@
-package com.heiha.example.lock;
+package com.heiha.example.lock.locks;
 
+import com.heiha.example.lock.StringExclusiveEditor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
@@ -11,5 +12,9 @@ import org.springframework.stereotype.Component;
  */
 @ConditionalOnProperty(prefix = "lock", name = "type", havingValue = "zookeeper")
 @Component
-public class ZooKeeperBasedLock {
+public class ZooKeeperBasedExclusiveEditor extends StringExclusiveEditor {
+    @Override
+    protected void setLockSource() {
+
+    }
 }
