@@ -14,4 +14,22 @@
 		<artifactId>${heiha.demo.artifactId}</artifactId>
 		<version>${heiha.demo.version}</version>
 	</parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>${heiha.demo.groupId}</groupId>
+            <artifactId>sample-memcached</artifactId>
+            <version>${heiha.demo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${heiha.demo.groupId}</groupId>
+            <artifactId>sample-redis</artifactId>
+            <version>${heiha.demo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${heiha.demo.groupId}</groupId>
+            <artifactId>sample-zk</artifactId>
+            <version>${heiha.demo.version}</version>
+        </dependency>
+    </dependencies>
 </project>
