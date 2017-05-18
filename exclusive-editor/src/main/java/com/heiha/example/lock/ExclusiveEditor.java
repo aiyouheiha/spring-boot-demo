@@ -7,36 +7,42 @@ package com.heiha.example.lock;
  * <b>Author:</b> heiha<br>
  *
  * <b>Exclusive editor</b><br>
- * Such a type of lock, which is distributed, having multi keys (multi sub-locks), <br>
- * and sub-lock will be acquired by value exclusive.
+ * Exclusive editor is actually a type of lock set. It is distributed, having multi locks, <br>
+ * and lock will be acquired by giving holder exclusive. <br>
+ * <br>
+ * Lock is NON re-entrant, once lock, following acquires failed until lock release.
  */
-public interface ExclusiveEditor<K, V> {
+public interface ExclusiveEditor<L, H> {
     /**
-     * Acquires the lock without blocking, successful return true.
-     * @param key
-     * @param value
+     * Acquires the lock without blocking, successful return true. <br>
+     * Lock is NON re-entrant.
+     *
+     * @param lock
+     * @param holder
      * @return true/false
      * @throws LockException
      */
-    boolean tryLock(K key, V value) throws LockException;
+    boolean tryLock(L lock, H holder) throws LockException;
 
     /**
      * Releases the lock.
+     * @param lock
      * @throws LockException
      */
-    void unlock() throws LockException;
+    void unlock(L lock) throws LockException;
 
     /**
      * Check lock status, locked return true.
      * @return true/false
      * @throws LockException
      */
-    boolean isLocked() throws LockException;
+    boolean isLocked(L lock) throws LockException;
 
     /**
-     * Get value carried by the lock.
-     * @return
+     * Get the lock holder.
+     * @param lock
+     * @return Lock holder
      * @throws LockException
      */
-    Object getLockValue() throws LockException;
+    H getLockHolder(L lock) throws LockException;
 }

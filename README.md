@@ -24,6 +24,8 @@
 
 **Exclusive Editor**
 
-> Such a type of lock, which is distributed, having multi keys (multi sub-locks), and sub-lock will be acquired by value exclusive.
+Exclusive editor is actually a type of lock set. It is distributed, having multi locks, and lock will be acquired by giving holder exclusive.
+
+Lock is NON re-entrant, once lock, following acquires failed until lock release.
 
 --------------------------------------------------------------
