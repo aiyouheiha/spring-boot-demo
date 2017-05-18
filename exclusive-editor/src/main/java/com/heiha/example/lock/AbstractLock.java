@@ -6,6 +6,6 @@ package com.heiha.example.lock;
  * <b>Date:</b> 2017/5/18 12:02<br>
  * <b>Author:</b> heiha<br>
  */
-public abstract class AbstractLock implements Lock {
+public abstract class AbstractLock implements ExclusiveEditor {
 
 }
