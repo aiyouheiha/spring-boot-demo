@@ -28,6 +28,7 @@
 		<module>sample-init</module>
 		<module>sample-mongo</module>
         <module>sample-mq</module>
+		<module>distributed-lock</module>
     </modules>
 
 	<properties>
