@@ -4,6 +4,7 @@ import com.heiha.example.SamplePropertiesApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -15,6 +16,7 @@ import static org.junit.Assert.*;
  * <b>Date:</b> 2017/5/10 17:20<br>
  * <b>Author:</b> heiha<br>
  */
+@ConditionalOnBean(SampleProperties2.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SamplePropertiesApplication.class)
 public class SampleProperties2Test {

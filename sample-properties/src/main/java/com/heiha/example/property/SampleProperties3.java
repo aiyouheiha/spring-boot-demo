@@ -2,6 +2,7 @@ package com.heiha.example.property;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
  * <b>Date:</b> 2017/5/10 17:15<br>
  * <b>Author:</b> heiha<br>
  */
+@ConditionalOnProperty(prefix = "sample", name = "host")
 @Component
 public class SampleProperties3 {
     @Autowired

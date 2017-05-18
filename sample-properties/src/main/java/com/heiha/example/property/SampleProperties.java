@@ -1,5 +1,6 @@
 package com.heiha.example.property;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -8,6 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * <b>Date:</b> 2017/5/9 10:33<br>
  * <b>Author:</b> heiha<br>
  */
+@ConditionalOnProperty(prefix = "sample", name = "host")
 @ConfigurationProperties(prefix = "sample")
 public class SampleProperties {
     private String host = "localhost";
