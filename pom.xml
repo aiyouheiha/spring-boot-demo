@@ -29,6 +29,7 @@
 		<module>sample-mongo</module>
         <module>sample-mq</module>
 		<module>distributed-lock</module>
+		<module>sample-memcached</module>
     </modules>
 
 	<properties>
