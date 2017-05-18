@@ -7,8 +7,11 @@ import java.util.concurrent.TimeUnit;
  * <b>Project:</b> spring-boot-demo<br>
  * <b>Date:</b> 2017/5/18 11:47<br>
  * <b>Author:</b> heiha<br>
+ *
+ * Exclusive editor
+ * Such a type of lock, which is distributed, having multi keys (multi sub-locks)
  */
-public interface Lock {
+public interface ExclusiveEditor {
     /**
      * Acquires the lock without blocking, successful return true.
      * @return true/false
