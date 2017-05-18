@@ -1,23 +1,24 @@
 package com.heiha.example.lock;
 
-import java.util.concurrent.TimeUnit;
-
 /**
  * <br>
  * <b>Project:</b> spring-boot-demo<br>
  * <b>Date:</b> 2017/5/18 11:47<br>
  * <b>Author:</b> heiha<br>
  *
- * Exclusive editor
- * Such a type of lock, which is distributed, having multi keys (multi sub-locks)
+ * <b>Exclusive editor</b><br>
+ * Such a type of lock, which is distributed, having multi keys (multi sub-locks), <br>
+ * and sub-lock will be acquired by value exclusive.
  */
-public interface ExclusiveEditor {
+public interface ExclusiveEditor<K, V> {
     /**
      * Acquires the lock without blocking, successful return true.
+     * @param key
+     * @param value
      * @return true/false
      * @throws LockException
      */
-    boolean tryLock() throws LockException;
+    boolean tryLock(K key, V value) throws LockException;
 
     /**
      * Releases the lock.
