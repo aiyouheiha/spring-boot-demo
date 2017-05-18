@@ -1,9 +1,6 @@
 package com.heiha.example.lock;
 
 import com.heiha.example.lock.exception.LockException;
-import com.heiha.example.lock.locks.MemcachedBasedLock;
-import com.heiha.example.lock.locks.RedisBasedLock;
-import com.heiha.example.lock.locks.ZooKeeperBasedLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -22,9 +19,9 @@ public class LockHelper implements ExclusiveEditor<String, String> {
     /**
      * Limit by ConditionalOnProperty, Only lock.type set in application.properties will be loaded. <br>
      *
-     * @see MemcachedBasedLock
-     * @see RedisBasedLock
-     * @see ZooKeeperBasedLock
+     * @see com.heiha.example.lock.editors.MemcachedBasedExclusiveEditor
+     * @see com.heiha.example.lock.editors.RedisBasedExclusiveEditor
+     * @see com.heiha.example.lock.editors.ZooKeeperBasedExclusiveEditor
      */
     @Autowired
     private StringExclusiveEditor exclusiveEditor;

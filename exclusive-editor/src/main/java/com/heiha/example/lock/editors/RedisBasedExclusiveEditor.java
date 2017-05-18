@@ -1,4 +1,4 @@
-package com.heiha.example.lock.locks;
+package com.heiha.example.lock.editors;
 
 import com.heiha.example.lock.StringExclusiveEditor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
