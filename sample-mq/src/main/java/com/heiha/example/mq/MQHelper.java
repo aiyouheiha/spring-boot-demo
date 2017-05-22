@@ -37,7 +37,7 @@ public class MQHelper {
 
     @Bean
     public ActiveMQQueue activeMQQueue() {
-        return new ActiveMQQueue("mq.queue");
+        return new ActiveMQQueue("sample.queue");
     }
 
 }
