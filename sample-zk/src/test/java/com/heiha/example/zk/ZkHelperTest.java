@@ -22,6 +22,7 @@ public class ZkHelperTest {
 
     @Test
     public void testUse() throws Exception {
-        zkHelper.use();
+        zkHelper.use("/test", "test data1");
+        zkHelper.use("/test", "test data2");
     }
 }
