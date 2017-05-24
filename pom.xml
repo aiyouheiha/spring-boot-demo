@@ -28,7 +28,6 @@
 		<module>sample-init</module>
 		<module>sample-mongo</module>
         <module>sample-mq</module>
-		<module>exclusive-editor</module>
 		<module>sample-memcached</module>
 		<module>sample-log</module>
     </modules>
