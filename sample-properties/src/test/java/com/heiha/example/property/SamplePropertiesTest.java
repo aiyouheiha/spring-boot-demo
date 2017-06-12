@@ -22,8 +22,11 @@ import static org.junit.Assert.*;
  * <b>Project:</b> spring-boot-demo<br>
  * <b>Date:</b> 2017/5/9 10:39<br>
  * <b>Author:</b> heiha<br>
+ *
+ * Different with {@link SampleProperties2Test} and {@link SampleProperties3Test},
+ * this one could not use @ConditionalOnBean(SampleProperties.class), or errors will happen.
  */
-@ConditionalOnBean(SampleProperties.class)
+// @ConditionalOnBean(SampleProperties.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SamplePropertiesApplication.class)
 @EnableConfigurationProperties(SampleProperties.class)
