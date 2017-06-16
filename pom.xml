@@ -30,7 +30,8 @@
         <module>sample-mq</module>
 		<module>sample-memcached</module>
 		<module>sample-log</module>
-    </modules>
+		<module>web</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -52,11 +53,12 @@
 			<!--<artifactId>spring-boot-starter-jta-atomikos</artifactId>-->
 		<!--</dependency>-->
 
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-devtools</artifactId>-->
-			<!--<scope>runtime</scope>-->
-		<!--</dependency>-->
+		<!-- 热部署 In IntelliJ, rebuild project is needed -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
 
         <!-- Spring Boot核心启动器，包含自动配置、日志和YAML -->
