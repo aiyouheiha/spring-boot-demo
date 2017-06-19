@@ -3,7 +3,9 @@ package com.heiha.example.aop;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -18,16 +20,19 @@ import javax.servlet.http.HttpServletResponse;
  * <b>Date:</b> 2017/6/19 14:33<br>
  * <b>Author:</b> heiha<br>
  */
+@Aspect
+@Component
 public class AdditionalResponseHeaderAspect {
 
+//    @Pointcut("execution(* com.heiha.example.web.*.*(..)) && @annotation(com.heiha.example.aop.annotation.AdditionalResponseHeader)")
     @Pointcut("@annotation(com.heiha.example.aop.annotation.AdditionalResponseHeader)")
     public void cut() {}
 
     @Around(value = "cut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        ServletWebRequest webRequest = new ServletWebRequest(request);
-        HttpServletResponse response = webRequest.getResponse();
+//        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpServletResponse response = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
+
         response.addHeader("Demo-Test", "only a test");
 
         Object result = joinPoint.proceed();
