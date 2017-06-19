@@ -15,6 +15,9 @@ import org.springframework.context.annotation.DependsOn;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 /**
@@ -42,5 +45,11 @@ public class SamplePropertiesTest {
 
         System.out.println(properties.getPool().getMaxActive());
         System.out.println(properties.getPool().getMaxIdle());
+
+        Map<String, Integer> map = properties.getTestMap();
+        System.out.println("map size: " + map.size() +
+                "\nmap test1: " + map.getOrDefault("test1", 11) +
+                "\nmap test2: " + map.getOrDefault("test2", 12) +
+                "\nmap test3: " + map.getOrDefault("test3", 13));
     }
 }

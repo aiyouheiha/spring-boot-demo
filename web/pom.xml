@@ -11,4 +11,12 @@
 
     <artifactId>web</artifactId>
     <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.heiha.example</groupId>
+            <artifactId>sample-aop</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

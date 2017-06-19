@@ -3,6 +3,9 @@ package com.heiha.example.property;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <br>
  * <b>Project:</b> spring-boot-demo<br>
@@ -16,6 +19,15 @@ public class SampleProperties {
     private int port;
     private String password;
     private Pool pool;
+    private Map<String, Integer> testMap = new HashMap<>();
+
+    public Map<String, Integer> getTestMap() {
+        return testMap;
+    }
+
+    public void setTestMap(Map<String, Integer> testMap) {
+        this.testMap = testMap;
+    }
 
     public String getHost() {
         return host;

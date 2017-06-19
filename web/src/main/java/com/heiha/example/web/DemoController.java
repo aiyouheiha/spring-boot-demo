@@ -1,6 +1,6 @@
 package com.heiha.example.web;
 
-import org.springframework.stereotype.Controller;
+import com.heiha.example.aop.annotation.AdditionalResponseHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +13,11 @@ import java.util.Optional;
  * <b>Date:</b> 2017/6/16 13:49<br>
  * <b>Author:</b> heiha<br>
  */
-@Controller
+@RestController
 @RequestMapping("/demo")
 public class DemoController extends BaseController {
 
+    @AdditionalResponseHeader
     @RequestMapping(path = "/test", method = RequestMethod.GET)
     public String demo(Integer id) {
         return "It is " + id;
@@ -25,6 +26,6 @@ public class DemoController extends BaseController {
 
     @RequestMapping(path = "/toDemo", method = RequestMethod.GET)
     public String toDemo() {
-        return "redirect:/demo";
+        return "/demo";
     }
 }

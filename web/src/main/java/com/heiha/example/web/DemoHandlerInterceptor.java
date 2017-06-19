@@ -1,8 +1,5 @@
 package com.heiha.example.web;
 
-import com.alibaba.fastjson.JSON;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,6 +30,11 @@ import javax.servlet.http.HttpServletResponse;
 public class DemoHandlerInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+        String url = httpServletRequest.getRequestURI();
+        System.out.println("url: " + url);
+
+        httpServletResponse.setHeader("Test-Header-Via-Handler-Interceptor", "test");
+
         System.out.println("preHandle");
         String id = httpServletRequest.getParameter("id");
         if (id != null && !id.equals("")) {
