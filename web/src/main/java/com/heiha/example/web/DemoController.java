@@ -2,9 +2,10 @@ package com.heiha.example.web;
 
 import com.heiha.example.aop.annotation.AdditionalResponseHeader;
 import com.heiha.example.aop.annotation.NoWebCache;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.heiha.example.mongo.po.Demo;
+import com.heiha.example.mongo.service.DemoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/demo")
 public class DemoController extends BaseController {
+    @Autowired
+    private DemoService demoService;
 
     @AdditionalResponseHeader
     @RequestMapping(path = "/test", method = RequestMethod.GET)
@@ -29,5 +32,25 @@ public class DemoController extends BaseController {
     @RequestMapping(path = "/toDemo", method = RequestMethod.GET)
     public String toDemo() {
         return "/demo";
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Demo getById(@PathVariable("id") Integer id) {
+        return demoService.getById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public Demo save(@RequestBody Demo demo) {
+        return demoService.save(demo);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public Demo update(@RequestBody Demo demo) {
+        return demoService.update(demo);
+    }
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    public void removeById(@PathVariable("id") Integer id) {
+        demoService.removeById(id);
     }
 }
