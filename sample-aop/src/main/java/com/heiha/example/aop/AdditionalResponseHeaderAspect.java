@@ -30,7 +30,7 @@ public class AdditionalResponseHeaderAspect {
 
     @Around(value = "cut()")
     public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
-//        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        // 这种方式spring3不支持，当前4.3.7是支持的
         HttpServletResponse response = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
 
         response.addHeader("Demo-Test", "only a test");

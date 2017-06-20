@@ -1,6 +1,7 @@
 package com.heiha.example.web;
 
 import com.heiha.example.aop.annotation.AdditionalResponseHeader;
+import com.heiha.example.aop.annotation.NoWebCache;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +25,7 @@ public class DemoController extends BaseController {
     }
 
 
+    @NoWebCache
     @RequestMapping(path = "/toDemo", method = RequestMethod.GET)
     public String toDemo() {
         return "/demo";
