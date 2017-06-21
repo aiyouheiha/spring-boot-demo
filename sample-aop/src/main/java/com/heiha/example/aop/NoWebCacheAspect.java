@@ -81,11 +81,15 @@ public class NoWebCacheAspect implements Filter{
         LOGGER.info("set response, response is {}", response);
         this.responseThreadLocal.set(response);
         filterChain.doFilter(servletRequest, servletResponse);
+        LOGGER.info("Remove useless response in ThreadLocal");
+        this.responseThreadLocal.remove();
+        if (this.responseThreadLocal.get() == null) {
+            LOGGER.info("After remove, hold null");
+        }
     }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     @Override
