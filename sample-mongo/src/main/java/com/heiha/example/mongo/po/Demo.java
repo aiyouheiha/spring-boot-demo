@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.mongodb.morphia.annotations.Entity;
 
 /**
  * <br>
@@ -16,60 +15,9 @@ import org.mongodb.morphia.annotations.Entity;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 public class Demo {
-    private Integer id;
+    private String id;
+    private String name;
+    private WuXingType wuXingType;
     private String note;
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Entity
-    public static class BaGua {
-        private final String name = "八卦";
-        private String note;
-
-        @Data
-        @Builder
-        @NoArgsConstructor
-        @AllArgsConstructor
-        @Entity
-        public static class Qian {
-            private final String name = "乾";
-            private String note;
-        }
-
-        @Data
-        @Builder
-        @NoArgsConstructor
-        @AllArgsConstructor
-        @Entity
-        public static class Kun {
-            private final String name = "坤";
-            private String note;
-        }
-    }
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Entity
-    public static class WuXing {
-        private final String name = "五行";
-        private WuXingType wuXingType;
-        private String note;
-    }
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Entity
-    public static class TaiJi {
-        private final String name = "太极";
-        private String note;
-    }
-
 }

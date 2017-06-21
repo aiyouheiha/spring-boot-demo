@@ -3,10 +3,12 @@ package com.heiha.example.web;
 import com.heiha.example.aop.annotation.AdditionalResponseHeader;
 import com.heiha.example.aop.annotation.NoWebCache;
 import com.heiha.example.mongo.po.Demo;
+import com.heiha.example.mongo.po.WuXingType;
 import com.heiha.example.mongo.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -24,6 +26,13 @@ public class DemoController extends BaseController {
     @AdditionalResponseHeader
     @RequestMapping(path = "/test", method = RequestMethod.GET)
     public String demo(Integer id) {
+        // 测试Controller处理Http请求是否异步
+        // 测试结果，异步执行，此处sleep，新的请求会由新的线程处理
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "It is " + id;
     }
 
@@ -35,7 +44,7 @@ public class DemoController extends BaseController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public Demo getById(@PathVariable("id") Integer id) {
+    public List<Demo> getById(@PathVariable("id") String id) {
         return demoService.getById(id);
     }
 
@@ -50,7 +59,17 @@ public class DemoController extends BaseController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public void removeById(@PathVariable("id") Integer id) {
+    public void removeById(@PathVariable("id") String id) {
         demoService.removeById(id);
+    }
+
+    @RequestMapping(path = "/getDemo", method = RequestMethod.GET)
+    public Demo getDemo() {
+        Demo demo = new Demo();
+        demo.setId("fd11111");
+        demo.setName("namea");
+        demo.setWuXingType(WuXingType.HUO);
+        demo.setNote("test");
+        return demo;
     }
 }
