@@ -23,7 +23,13 @@ import java.io.IOException;
 public class NoWebCacheAspect implements Filter{
 
     private final static Logger LOGGER = LoggerFactory.getLogger(NoWebCacheAspect.class);
-    private ThreadLocal<HttpServletResponse> responseThreadLocal = new ThreadLocal<HttpServletResponse>();
+
+    /**
+     * 之前未定义为static类型，<br>
+     * 可能存在同一线程下，Filter和Aspect因为分别对应一个各自的bean实例，<br>
+     * 导致set和get操作的并非同一个ThreadLocal对象
+     */
+    private final static ThreadLocal<HttpServletResponse> responseThreadLocal = new ThreadLocal<HttpServletResponse>();
 
     public HttpServletResponse getResponse() {
         return responseThreadLocal.get();
