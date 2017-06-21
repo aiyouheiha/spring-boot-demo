@@ -28,6 +28,17 @@ public class NoWebCacheAspect implements Filter{
      * 之前未定义为static类型，<br>
      * 可能存在同一线程下，Filter和Aspect因为分别对应一个各自的bean实例，<br>
      * 导致set和get操作的并非同一个ThreadLocal对象
+     * <p>
+     *     主要是针对spring3，因为设置
+     *     <mvc:annotation-driven />
+     *     <aop:aspectj-autoproxy/>
+     *     后，aop可以自动加载，但是Filter或者Interceptor依旧不行，需要配置文件中配置为bean
+     *     测试结果spring3中set和get对应的并非同一个ThreadLocal
+     *     但是在本项目中，spring4，貌似对应的是一个bean实例，即使非static，依旧可以
+     *     在ThreadLocal正常的存放response对象
+     *      不过讲道理，需要加上static，以对应其功能需求
+     * </p>
+     *
      */
     private final static ThreadLocal<HttpServletResponse> responseThreadLocal = new ThreadLocal<HttpServletResponse>();
 
