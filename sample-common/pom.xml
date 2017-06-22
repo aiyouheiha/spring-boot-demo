@@ -14,4 +14,16 @@
 		<artifactId>${heiha.demo.artifactId}</artifactId>
 		<version>${heiha.demo.version}</version>
 	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.javaslang</groupId>
+			<artifactId>javaslang</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+	</dependencies>
 </project>

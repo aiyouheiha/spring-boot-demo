@@ -20,5 +20,9 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.heiha.example</groupId>
+			<artifactId>sample-common</artifactId>
+		</dependency>
 	</dependencies>
 </project>

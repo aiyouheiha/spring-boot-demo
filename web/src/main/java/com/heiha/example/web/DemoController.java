@@ -19,7 +19,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/demo")
-public class DemoController extends BaseController {
+public class DemoController {
     @Autowired
     private DemoService demoService;
 
