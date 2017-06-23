@@ -1,4 +1,4 @@
-package com.heiha.example.aop;
+package com.heiha.example.aop.sample;
 
 import org.springframework.core.annotation.AliasFor;
 

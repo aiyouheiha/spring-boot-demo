@@ -10,7 +10,13 @@ import java.lang.annotation.Target;
  * <b>Project:</b> spring-boot-demo<br>
  * <b>Date:</b> 2017/6/20 15:07<br>
  * <b>Author:</b> heiha<br>
+ *
+ * Deprecated and see {@link ResponseHeaderAddTest}
+ *
+ * @see com.heiha.example.aop.aspect.NoWebCacheAspect
+ * @see ResponseHeaderAddTest
  */
+@Deprecated
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NoWebCache {

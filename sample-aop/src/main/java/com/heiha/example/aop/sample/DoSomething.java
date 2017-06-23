@@ -1,5 +1,7 @@
-package com.heiha.example.aop;
+package com.heiha.example.aop.sample;
 
+import com.heiha.example.aop.sample.AopSample;
+import com.heiha.example.aop.sample.AopSample2;
 import org.springframework.stereotype.Component;
 
 /**

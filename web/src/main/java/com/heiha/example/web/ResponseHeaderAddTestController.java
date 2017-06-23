@@ -1,6 +1,6 @@
 package com.heiha.example.web;
 
-import com.heiha.example.aop.annotation.ResponseGetMethod;
+import com.heiha.example.aop.aspect.ResponseGetMethod;
 import com.heiha.example.aop.annotation.ResponseHeaderAddTest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

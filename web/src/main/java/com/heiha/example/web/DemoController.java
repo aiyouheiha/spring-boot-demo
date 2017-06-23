@@ -23,24 +23,36 @@ public class DemoController {
     @Autowired
     private DemoService demoService;
 
+    /**
+     * Used to test if Controller handle requests asynchronous <br>
+     * Result: yes, and while this method sleeping, another thread will deal with a new coming request
+     *
+     * @param seconds
+     * @return
+     */
     @AdditionalResponseHeader
-    @RequestMapping(path = "/test", method = RequestMethod.GET)
-    public String demo(Integer id) {
-        // 测试Controller处理Http请求是否异步
-        // 测试结果，异步执行，此处sleep，新的请求会由新的线程处理
+    @RequestMapping(path = "/test/sleep", method = RequestMethod.GET)
+    public String demo(Integer seconds) {
         try {
-            Thread.sleep(10000);
+            // 测试Controller处理Http请求是否异步
+            // 测试结果，异步执行，此处sleep，新的请求会由新的线程处理
+            Thread.sleep(seconds * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "It is " + id;
+        return "Sleep (second): " + seconds;
     }
 
-
+    /**
+     * For some reasons, {@link NoWebCache} is not in effect. <br>
+     * see {@link com.heiha.example.aop.aspect.NoWebCacheAspect} to find more detail.
+     *
+     * @return
+     */
     @NoWebCache
-    @RequestMapping(path = "/toDemo", method = RequestMethod.GET)
+    @RequestMapping(path = "/test/getString", method = RequestMethod.GET)
     public String toDemo() {
-        return "/demo";
+        return "demo";
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)

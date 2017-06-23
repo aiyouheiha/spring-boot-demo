@@ -1,4 +1,4 @@
-package com.heiha.example.aop.annotation;
+package com.heiha.example.aop.aspect;
 
 /**
  * <br>
@@ -7,6 +7,7 @@ package com.heiha.example.aop.annotation;
  * <b>Author:</b> heiha<br>
  *
  * @see com.heiha.example.aop.annotation.ResponseHeaderAddTest
+ * @see ResponseHeaderAddTestAspect
  */
 public enum ResponseGetMethod {
     INTERCEPTOR, FILTER, REQUEST_CONTEXT_HOLDER

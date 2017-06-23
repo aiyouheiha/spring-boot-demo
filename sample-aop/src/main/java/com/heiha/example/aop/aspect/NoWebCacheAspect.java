@@ -1,4 +1,4 @@
-package com.heiha.example.aop;
+package com.heiha.example.aop.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -17,8 +17,18 @@ import java.io.IOException;
  * <b>Project:</b> spring-boot-demo<br>
  * <b>Date:</b> 2017/6/20 15:11<br>
  * <b>Author:</b> heiha<br>
+ *
+ * Filter and Aspect in one place, and not remove ThreadLocal, so deprecated. <br>
+ * {@link ResponseHeaderAddTestAspect} with
+ * {@link com.heiha.example.util.ResponseUtil#addNoWebCacheHeader(HttpServletResponse)} is the newest implementation.
+ *
+ * @see com.heiha.example.aop.annotation.NoWebCache
+ * @see ResponseHeaderAddTestAspect
  */
-@Component
+@Deprecated
+// Without @Component to avoid this deprecated Filter from loading.
+// And this aspect will not be in effect.
+// @Component
 @Aspect
 public class NoWebCacheAspect implements Filter{
 

@@ -1,6 +1,7 @@
-package com.heiha.example.aop;
+package com.heiha.example.aop.sample;
 
 import com.alibaba.fastjson.JSON;
+import com.heiha.example.aop.sample.AopSample2;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -20,9 +21,9 @@ import org.springframework.stereotype.Component;
  */
 @Aspect
 @Component
-public class AopUtil {
+public class SampleAspect {
 
-    @Pointcut("execution(* com.heiha.example.aop.DoSomething.*(..)) && @annotation(com.heiha.example.aop.AopSample)")
+    @Pointcut("execution(* com.heiha.example.aop.sample.DoSomething.*(..)) && @annotation(com.heiha.example.aop.sample.AopSample)")
     public void pointCut() {}
 
     @Before("pointCut()")
@@ -36,7 +37,7 @@ public class AopUtil {
         showResult(j, result);
     }
 
-    @Around("execution(* com.heiha.example.aop.DoSomething.*(..)) && @annotation(annotation)")
+    @Around("execution(* com.heiha.example.aop.sample.DoSomething.*(..)) && @annotation(annotation)")
     public Object around(ProceedingJoinPoint pj, AopSample2 annotation) throws Throwable {
         System.out.println("Annotation AopSample2 Value: " + annotation.value());
         System.out.println("Annotation AopSample2 Name: " + annotation.name());

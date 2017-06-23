@@ -1,4 +1,4 @@
-package com.heiha.example.aop;
+package com.heiha.example.aop.aspect;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -19,7 +19,14 @@ import javax.servlet.http.HttpServletResponse;
  * <b>Project:</b> spring-boot-demo<br>
  * <b>Date:</b> 2017/6/19 14:33<br>
  * <b>Author:</b> heiha<br>
+ *
+ * This is only a test aspect. <br>
+ * Deprecated and see {@link ResponseHeaderAddTestAspect}
+ *
+ * @see com.heiha.example.aop.annotation.AdditionalResponseHeader
+ * @see ResponseHeaderAddTestAspect
  */
+@Deprecated
 @Aspect
 @Component
 public class AdditionalResponseHeaderAspect {

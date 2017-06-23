@@ -1,6 +1,5 @@
-package com.heiha.example.aop;
+package com.heiha.example.aop.aspect;
 
-import com.heiha.example.aop.annotation.ResponseGetMethod;
 import com.heiha.example.aop.annotation.ResponseHeaderAddTest;
 import com.heiha.example.common.ResponseHolderFilter;
 import com.heiha.example.common.ResponseHolderInterceptor;
@@ -24,6 +23,8 @@ import static javaslang.API.Case;
  * <b>Project:</b> spring-boot-demo<br>
  * <b>Date:</b> 2017/6/22 11:48<br>
  * <b>Author:</b> heiha<br>
+ *
+ * @see ResponseHeaderAddTest
  */
 @Aspect
 @Component
