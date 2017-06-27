@@ -143,6 +143,21 @@
 				<artifactId>sample-common</artifactId>
 				<version>0.0.1-SNAPSHOT</version>
 			</dependency>
+			<dependency>
+				<groupId>com.heiha.example</groupId>
+				<artifactId>sample-aop</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.heiha.example</groupId>
+				<artifactId>sample-mongo</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>com.heiha.example</groupId>
+				<artifactId>sample-mysql-mybatis</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
