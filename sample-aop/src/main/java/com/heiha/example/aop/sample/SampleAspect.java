@@ -12,6 +12,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 /**
  * <br>
  * <b>Project:</b> spring-boot-demo<br>
@@ -52,6 +54,21 @@ public class SampleAspect {
         return result;
     }
 
+    /**
+     * If wanna deal with args, use this way.
+     * <p>
+     * Or using j.proceed() with no params is enough, even if method have, like {@code around()}
+     *
+     * @param j
+     * @return
+     * @throws Throwable
+     */
+    @Around("@annotation(SampleAnnotation)")
+    public Object around3(ProceedingJoinPoint j) throws Throwable {
+        Object[] args = j.getArgs();
+        args[0] = args[0] + ": add in aspect";
+        return j.proceed(args);
+    }
 
     private void showLocationInfo(JoinPoint j) {
         Signature s = j.getSignature();

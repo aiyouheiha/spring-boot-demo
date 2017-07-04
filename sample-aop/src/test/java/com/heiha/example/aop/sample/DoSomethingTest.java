@@ -26,6 +26,11 @@ public class DoSomethingTest {
 
     @Test
     public void testDoSomething2() throws Exception {
-        doSomething.doSomething2();
+        doSomething.doSomething2("input2");
+    }
+
+    @Test
+    public void testDoSomething3() throws Exception {
+        System.out.println("Test: " + doSomething.doSomething3("input3"));
     }
 }

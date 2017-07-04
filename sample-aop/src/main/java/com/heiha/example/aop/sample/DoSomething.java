@@ -20,9 +20,15 @@ public class DoSomething {
     }
 
     @AopSample2("value")
-    public Integer doSomething2() {
-        System.out.println("Do something 2 ...");
+    public Integer doSomething2(String input) {
+        System.out.println("Do something 2 ..." + input);
         return 123;
+    }
+
+    @SampleAnnotation
+    public String doSomething3(String input) {
+        System.out.println(input);
+        return input;
     }
 
 }
