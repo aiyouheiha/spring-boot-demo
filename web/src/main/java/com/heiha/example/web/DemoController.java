@@ -8,8 +8,10 @@ import com.heiha.example.mongo.service.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.*;
 
 /**
  * <br>
@@ -83,5 +85,39 @@ public class DemoController {
         demo.setWuXingType(WuXingType.HUO);
         demo.setNote("test");
         return demo;
+    }
+
+    @RequestMapping(path = "/call", method = RequestMethod.GET)
+    public  List<String> testCallable() throws InterruptedException, ExecutionException {
+        List<Callable<String>> callableList = new ArrayList<>(100);
+        ExecutorService executorService = Executors.newFixedThreadPool(100);
+        for (int i = 1; i< 50; i++) {
+            final String iStr = String.valueOf(i);
+            Callable<String> callable = new Callable<String>() {
+                @Override
+                public String call() throws Exception {
+                    try {
+                        Thread.sleep(Integer.valueOf(iStr) * 1000);
+                    } catch (Exception e) {
+                        System.out.println("quit");
+                        throw new Exception("quit");
+                    }
+                    System.out.println("In callable: " + iStr);
+                    if (iStr.equals("49")) {
+                        throw new Exception("49 exception");
+                    }
+                    return iStr;
+                }
+            };
+            callableList.add(callable);
+        }
+        List<String> result = new ArrayList<>();
+        List<Future<String>> futures = executorService.invokeAll(callableList, 10, TimeUnit.SECONDS);
+        for (Future future : futures) {
+            if (future.isDone() && !future.isCancelled()) {
+                result.add((String)future.get());
+            }
+        }
+        return result;
     }
 }
