@@ -36,8 +36,9 @@ public class ArgsAspect {
         Object[] args = j.getArgs();
         StringBuffer stringBuffer = new StringBuffer();
         for (int i = 0; i < args.length; i++) {
-            stringBuffer.append("Args ").append(i).append("# ").append(JSON.toJSONString(args[i]));
+            stringBuffer.append("Args ").append(i).append("# ").append(JSON.toJSONString(args[i])).append(" | ");
         }
+        LOGGER.info(stringBuffer.toString());
         return j.proceed();
     }
 }
