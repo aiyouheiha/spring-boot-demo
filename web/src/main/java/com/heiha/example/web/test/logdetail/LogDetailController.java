@@ -17,7 +17,7 @@ import java.util.List;
 public class LogDetailController {
     @Args
     @RequestMapping(method = RequestMethod.POST)
-    public String log(@RequestParam(required = false) String s, @RequestParam(required = false) Integer i, @RequestBody List<String> list) {
+    public String log(@RequestParam(required = false) String s, @RequestParam(required = false) Integer i, LogTest logTest, @RequestBody List<String> list) {
         return "over";
     }
 }
