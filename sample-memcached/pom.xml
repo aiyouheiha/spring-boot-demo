@@ -20,12 +20,6 @@
 		<dependency>
 			<groupId>com.googlecode.xmemcached</groupId>
 			<artifactId>xmemcached</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-		<dependency>
-            <groupId>${heiha.demo.groupId}</groupId>
-			<artifactId>sample-properties</artifactId>
-            <version>${heiha.demo.version}</version>
 		</dependency>
 	</dependencies>
 </project>
