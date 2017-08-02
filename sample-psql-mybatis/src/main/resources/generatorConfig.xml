@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <!--导入属性配置 -->
-    <properties resource="generator.properties"></properties>
+    <properties resource="generator4psql.properties"></properties>
 
     <!--指定特定数据库的jdbc驱动jar包的位置 -->
     <classPathEntry location="${jdbc.driverLocation}"/>
@@ -29,7 +29,7 @@
             targetPackage     指定生成的model生成所在的包名
             targetProject     指定在该项目下所在的路径
         -->
-        <javaModelGenerator targetPackage="com.heiha.example.sql.po" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.heiha.example.springboot.psql.po" targetProject="src/main/java">
             <!-- 是否对model添加 构造函数 -->
             <property name="constructorBased" value="true"/>
 
@@ -40,7 +40,7 @@
             <property name="immutable" value="true"/>
 
             <!-- 给Model添加一个父类 -->
-            <property name="rootClass" value="com.heiha.example.sql.po.BaseEntity"/>
+            <property name="rootClass" value="com.heiha.example.springboot.psql.po.BaseEntity"/>
 
             <!-- 是否对类CHAR类型的列的数据进行trim操作 -->
             <property name="trimStrings" value="true"/>
@@ -56,7 +56,7 @@
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-        <javaClientGenerator targetPackage="com.heiha.example.sql.mapper" targetProject="src/main/java" type="MIXEDMAPPER">
+        <javaClientGenerator targetPackage="com.heiha.example.springboot.psql.mapper" targetProject="src/main/java" type="MIXEDMAPPER">
             <property name="enableSubPackages" value=""/>
             <!--
                     定义Maper.java 源代码中的ByExample() 方法的可视性，可选的值有：
@@ -80,9 +80,8 @@
 
         </javaClientGenerator>
 
-        <table tableName="tb_sample" schema="louis">
-
-
+        <!--<table tableName="t_test" schema="louis">-->
+        <table tableName="t_test">
             <!-- optional   , only for mybatis3 runtime
                  自动生成的键值（identity,或者序列值）
                如果指定此元素，MBG将会生成<selectKey>元素，然后将此元素插入到SQL Map的<insert> 元素之中
@@ -101,7 +100,7 @@
                   identity: 自增主键  If true, then the column is flagged as an identity column and the generated <selectKey> element will be placed after the insert (for an identity column). If false, then the generated <selectKey> will be placed before the insert (typically for a sequence).
 
             -->
-            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
+            <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>-->
 
 
             <!-- optional.
@@ -133,9 +132,6 @@
 
             -->
             <!--<columnOverride column="" javaType=""    jdbcType="" typeHandler=""  delimitedColumnName="" />-->
-        </table>
-        <table tableName="tb_user">
-            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true" type="post"/>
         </table>
     </context>
 </generatorConfiguration>
