@@ -1,4 +1,4 @@
-package com.heiha.example.common;
+package com.heiha.example.springboot.config;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -11,15 +11,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  * <br>
  * <b>Project:</b> spring-boot-demo<br>
- * <b>Date:</b> 2017/7/19 14:10<br>
+ * <b>Date:</b> 2017/8/2 13:24<br>
  * <b>Author:</b> heiha<br>
  */
 @Configuration
 public class MvcConfig extends WebMvcConfigurerAdapter {
-
     @Override
     public void addViewControllers(final ViewControllerRegistry registry) {
-        registry.addViewController("/test").setViewName("test");
+        registry.addViewController("/login").setViewName("login");
     }
 
     @Override
@@ -32,5 +31,4 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     public RestTemplate restTemplate(final RestTemplateBuilder builder) {
         return builder.build();
     }
-
 }

@@ -10,9 +10,9 @@
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
-		<groupId>${heiha.demo.groupId}</groupId>
-		<artifactId>${heiha.demo.artifactId}</artifactId>
-		<version>${heiha.demo.version}</version>
+		<groupId>com.heiha.example</groupId>
+		<artifactId>spring-boot-demo</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
 
@@ -27,9 +27,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>${heiha.demo.groupId}</groupId>
+			<groupId>com.heiha.example</groupId>
 			<artifactId>sample-common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
