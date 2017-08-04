@@ -15,12 +15,14 @@ import org.springframework.stereotype.Component;
 public class Sample4PropertySource<T> {
     @Value("${test.name}")
     private String name;
-
     @Value("${test.test-value}")
     private T testValue;
+    @Value("${test.enum-type}")
+    private SampleEnumType enumType;
 
     public void print() {
         System.out.println(name);
+        System.out.println(enumType);
     }
 
     public T getTest() {
