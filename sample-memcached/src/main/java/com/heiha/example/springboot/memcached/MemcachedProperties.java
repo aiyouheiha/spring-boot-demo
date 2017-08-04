@@ -9,7 +9,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * <b>Date:</b> 2017/5/18 11:09<br>
  * <b>Author:</b> heiha<br>
  */
-@ConditionalOnProperty(prefix = "memcached", name = "address")
 @ConfigurationProperties("memcached")
 public class MemcachedProperties {
     private String address = "localhost:11211";
