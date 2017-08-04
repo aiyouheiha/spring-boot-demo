@@ -1,7 +1,7 @@
-package com.heiha.example.memcached;
+package com.heiha.example.springboot.memcached;
 
+import com.heiha.example.springboot.memcached.MemcachedProperties;
 import net.rubyeye.xmemcached.MemcachedClient;
-import net.rubyeye.xmemcached.MemcachedClientBuilder;
 import net.rubyeye.xmemcached.XMemcachedClientBuilder;
 import net.rubyeye.xmemcached.exception.MemcachedException;
 import org.springframework.beans.factory.InitializingBean;
@@ -32,6 +32,6 @@ public class MemcachedHelper implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        memcachedClient = new XMemcachedClientBuilder(properties.getHost()).build();
+        memcachedClient = new XMemcachedClientBuilder(properties.getAddress()).build();
     }
 }
