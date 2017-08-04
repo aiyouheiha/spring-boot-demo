@@ -12,11 +12,22 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @PropertySource("classpath:${sample.property.location}/test.properties")
-public class Sample4PropertySource {
+public class Sample4PropertySource<T> {
     @Value("${test.name}")
     private String name;
 
+    @Value("${test.test-value}")
+    private T testValue;
+
     public void print() {
         System.out.println(name);
+    }
+
+    public T getTest() {
+        return testValue;
+    }
+
+    public T getTest2(T value) {
+        return value;
     }
 }
