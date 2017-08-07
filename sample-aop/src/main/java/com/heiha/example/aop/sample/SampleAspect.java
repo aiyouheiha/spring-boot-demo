@@ -30,8 +30,10 @@ public class SampleAspect {
 
     @Before("pointCut()")
     public void before(JoinPoint j) {
+        System.out.println(Thread.currentThread().getName().concat(" aop start"));
         showLocationInfo(j);
         showArgs(j);
+        System.out.println(Thread.currentThread().getName().concat(" aop end"));
     }
 
     @AfterReturning(value = "pointCut()", returning = "result")

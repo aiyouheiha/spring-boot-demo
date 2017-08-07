@@ -1,7 +1,10 @@
 package com.heiha.example.aop.sample;
 
+import com.heiha.example.aop.annotation.DemoAnnotation;
 import com.heiha.example.aop.sample.AopSample;
 import com.heiha.example.aop.sample.AopSample2;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,10 +15,21 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class DoSomething {
+    @Autowired
+    private TestCCC testCCC;
+
+
+    @Scheduled(fixedRate = 10000)
+    @DemoAnnotation
+    public String doSomething() throws InterruptedException {
+       return testCCC.test();
+    }
 
     @AopSample
-    public String doSomething() {
+    private String schedule() {
+        System.out.println(Thread.currentThread().getName().concat(" do something start"));
         System.out.println("Do something ...");
+        System.out.println(Thread.currentThread().getName().concat(" do something end"));
         return "Hello World!";
     }
 
