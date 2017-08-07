@@ -35,10 +35,67 @@ public class ZkHelper implements InitializingBean {
                 .namespace(properties.getNamespace())
                 .build();
         client.start();
+        // 锁可重入
+        // 锁acquire多少次，就必须release多少次，而不是一次顶多次
+        // 并不需要统一的使用一个lock对象，只要路径相同，便是使用同一个锁
         lock = new InterProcessMutex(client, "/lock");
     }
 
     public void use(String path, String data) throws Exception {
+        new Thread(() -> {
+            InterProcessMutex lockInner = new InterProcessMutex(client, "/lockInner");
+            try {
+                lockInner.acquire();
+                System.out.println(Thread.currentThread().getName().concat(" get lock"));
+                lockInner.acquire();
+                System.out.println(Thread.currentThread().getName().concat(" get lock again"));
+                Thread.sleep(10000);
+                lockInner.release();
+                System.out.println(Thread.currentThread().getName().concat(" release lock"));
+                Thread.sleep(5000);
+                lockInner.acquire();
+                System.out.println(Thread.currentThread().getName().concat(" get lock 2"));
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    lockInner.release();
+                    System.out.println(Thread.currentThread().getName().concat(" release lock"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+        InterProcessMutex lockInner = new InterProcessMutex(client, "/lockInner");
+        try {
+            lockInner.acquire();
+            System.out.println(Thread.currentThread().getName().concat(" get lock"));
+            lockInner.acquire();
+            System.out.println(Thread.currentThread().getName().concat(" get lock again"));
+            Thread.sleep(10000);
+            lockInner.release();
+            System.out.println(Thread.currentThread().getName().concat(" release lock"));
+            Thread.sleep(5000);
+            lockInner.acquire();
+            System.out.println(Thread.currentThread().getName().concat(" get lock 2"));
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                lockInner.release();
+                System.out.println(Thread.currentThread().getName().concat(" release lock"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         // check exist
         Stat stat = client.checkExists().forPath(path);
         System.out.println("Current status -");
