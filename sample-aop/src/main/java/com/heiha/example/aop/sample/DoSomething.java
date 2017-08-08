@@ -18,11 +18,17 @@ public class DoSomething {
     @Autowired
     private TestCCC testCCC;
 
+    private int count = 0;
 
     @Scheduled(fixedRate = 10000)
     @DemoAnnotation
     public String doSomething() throws InterruptedException {
-       return testCCC.test();
+        String result = testCCC.test();
+        count ++;
+        if (count == 3) {
+            throw new Error("haha");
+        }
+        return result;
     }
 
     @AopSample
