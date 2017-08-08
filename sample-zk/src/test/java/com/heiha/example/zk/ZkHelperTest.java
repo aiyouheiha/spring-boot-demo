@@ -20,9 +20,16 @@ public class ZkHelperTest {
     @Autowired
     private ZkHelper zkHelper;
 
+    @Autowired
+    private ZkTest2 zkTest2;
+
     @Test
     public void testUse() throws Exception {
         zkHelper.use("/test", "test data1");
-        zkHelper.use("/test", "test data2");
+    }
+
+    @Test
+    public void testZkTest2() throws Exception {
+        zkTest2.use();
     }
 }

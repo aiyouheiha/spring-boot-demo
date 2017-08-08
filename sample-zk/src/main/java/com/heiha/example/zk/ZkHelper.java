@@ -24,7 +24,7 @@ public class ZkHelper implements InitializingBean {
 
     private  CuratorFramework client;
 
-    private InterProcessMutex lock;
+    private InterProcessMutex lockInner;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -37,25 +37,29 @@ public class ZkHelper implements InitializingBean {
         client.start();
         // 锁可重入
         // 锁acquire多少次，就必须release多少次，而不是一次顶多次
-        // 并不需要统一的使用一个lock对象，只要路径相同，便是使用同一个锁
-        lock = new InterProcessMutex(client, "/lock");
+        // [错误]~~并不需要统一的使[错误]用一个lock对象，只要路径相同[错误]，便是使用同一个锁~~[错误]
+        // 处理同一个业务，即使路径相同，也要使用同一个锁对象！！！
+        // 否则，容易出现，业务阶段一申请到锁，未释放，业务阶段二申请锁
+        // 此时，即使路径相同，但因为不是同一个锁对象，将会造成死锁！！！！
+        // 最佳方式是只对应一个锁，这样保证同一业务（线程）可重入，而不同线程，则会等待持有锁业务释放锁
+        lockInner = new InterProcessMutex(client, "/lockInner");
+    }
+
+    public InterProcessMutex getLock() {
+        return lockInner;
+    }
+
+    public CuratorFramework getClient() {
+        return client;
     }
 
     public void use(String path, String data) throws Exception {
         new Thread(() -> {
-            InterProcessMutex lockInner = new InterProcessMutex(client, "/lockInner");
             try {
-                lockInner.acquire();
                 System.out.println(Thread.currentThread().getName().concat(" get lock"));
                 lockInner.acquire();
-                System.out.println(Thread.currentThread().getName().concat(" get lock again"));
+                System.out.println(Thread.currentThread().getName().concat(" get lock"));
                 Thread.sleep(10000);
-                lockInner.release();
-                System.out.println(Thread.currentThread().getName().concat(" release lock"));
-                Thread.sleep(5000);
-                lockInner.acquire();
-                System.out.println(Thread.currentThread().getName().concat(" get lock 2"));
-                Thread.sleep(5000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (Exception e) {
@@ -70,19 +74,11 @@ public class ZkHelper implements InitializingBean {
             }
         }).start();
 
-        InterProcessMutex lockInner = new InterProcessMutex(client, "/lockInner");
         try {
-            lockInner.acquire();
             System.out.println(Thread.currentThread().getName().concat(" get lock"));
             lockInner.acquire();
-            System.out.println(Thread.currentThread().getName().concat(" get lock again"));
+            System.out.println(Thread.currentThread().getName().concat(" get lock"));
             Thread.sleep(10000);
-            lockInner.release();
-            System.out.println(Thread.currentThread().getName().concat(" release lock"));
-            Thread.sleep(5000);
-            lockInner.acquire();
-            System.out.println(Thread.currentThread().getName().concat(" get lock 2"));
-            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -95,43 +91,10 @@ public class ZkHelper implements InitializingBean {
                 e.printStackTrace();
             }
         }
-
-        // check exist
-        Stat stat = client.checkExists().forPath(path);
-        System.out.println("Current status -");
-        printObject(stat);
-
-        if (stat == null) {
-            String createReturn = client.create().forPath(path, data.getBytes());
-            System.out.println("No path and create, create return is -");
-            printObject(createReturn);
-        } else {
-            String oldData = new String(client.getData().forPath(path));
-            System.out.println("Having path and get data -");
-            printObject(oldData);
-            Stat statSet = client.setData().forPath(path, data.getBytes());
-            System.out.println("Set new data -");
-            printObject(statSet);
-        }
-
-        System.out.println("Current data in path -");
-        printObject(new String(client.getData().forPath(path)));
-
-        printObject("Delete and recheck exists -");
-        client.delete().forPath(path);
-        printObject(client.checkExists().forPath(path));
     }
 
     private void printObject(Object o) {
         System.out.println(JSON.toJSONString(o));
-    }
-
-    private class UseThread implements Runnable {
-
-        @Override
-        public void run() {
-
-        }
     }
 }
 
