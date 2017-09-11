@@ -2,11 +2,9 @@ package com.heiha.example.mq;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import javax.jms.Queue;
+import javax.jms.Destination;
 
 /**
  * <br>
@@ -14,18 +12,12 @@ import javax.jms.Queue;
  * <b>Date:</b> 2017/5/22 18:34<br>
  * <b>Author:</b> heiha<br>
  */
-@Component
-@EnableScheduling
+@Service
 public class Producer {
     @Autowired
     private JmsMessagingTemplate jmsMessagingTemplate;
 
-    @Autowired
-    private Queue queue;
-
-    // 每3s执行1次
-    @Scheduled(fixedDelay = 3000)
-    public void send() {
-        this.jmsMessagingTemplate.convertAndSend(this.queue, "hi,activeMQ");
+    public void send(Destination destination, final String message) {
+        jmsMessagingTemplate.convertAndSend(destination, message);
     }
 }
