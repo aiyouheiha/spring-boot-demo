@@ -1,0 +1,6 @@
+spring:
+  rabbitmq:
+    host: sinfonia.top
+    port: 5672
+    username: test
+    password: test

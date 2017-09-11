@@ -1,5 +1,7 @@
 .mvn/
 target/
+mvnw
+mvnw.cmd
 
 *.log
 *.epoch

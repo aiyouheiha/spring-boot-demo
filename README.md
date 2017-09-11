@@ -2,12 +2,14 @@
 
 --------------------------------------------------------------
 
-- [test](#test)
-- [Spring Boot ActiveMQ](#Spring Boot ActiveMQ)
+- [Spring Boot ActiveMQ](#spring-boot-starter-activemq)
+- [Spring Boot RabbitMQ](#spring-boot-starter-amqp)
 
 --------------------------------------------------------------
 
-## Spring Boot ActiveMQ
+## spring-boot-starter-activemq
+
+> Spring Boot ActiveMQ
 
 ### 1. Download ActiveMQ
 
@@ -137,6 +139,32 @@ public class SampleMqApplicationTests {
 
 --------------------------------------------------------------
 
+## spring-boot-starter-amqp
+
+> Spring Boot RabbitMQ
+
+### Pom
+
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-amqp</artifactId>
+</dependency>
+```
+
+### application.yml
+
+```
+spring:
+  rabbitmq:
+    host: sinfonia.top
+    port: 5672
+    username: test
+    password: test
+```
+		
+--------------------------------------------------------------
+		
 ## web
 
 ### web-demo-1
